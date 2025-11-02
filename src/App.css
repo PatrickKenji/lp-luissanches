@@ -1,0 +1,10 @@
+/* Reset básico para o App */
+.App {
+  min-height: 100vh;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  }
+
+main {
+  position: relative;
+}

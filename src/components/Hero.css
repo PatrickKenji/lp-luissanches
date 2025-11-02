@@ -1,0 +1,204 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #111 100%);
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px; /* Espaço para o header fixo */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #111 100%);
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="%23ea0035" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.8;
+  z-index: 1;
+  animation: gridMove 30s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(15px, -15px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-10px, -20px);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-20px, 10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.6;
+  }
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4xl);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-text-primary);
+}
+
+.highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-accent);
+  z-index: -1;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+  max-width: 500px;
+}
+
+.hero-cta {
+  font-size: 1.1rem;
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.btn-arrow {
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.hero-cta:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-container {
+  width: 100%;
+  max-width: 500px;
+  height: 600px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--color-accent);
+  animation: neonGlow 3s ease-in-out infinite;
+}
+
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 15px rgba(234, 0, 53, 0.4), 0 0 25px rgba(234, 0, 53, 0.2);
+    border-color: var(--color-accent);
+  }
+  50% {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 25px rgba(234, 0, 53, 0.6), 0 0 40px rgba(234, 0, 53, 0.3), 0 0 60px rgba(234, 0, 53, 0.1);
+    border-color: #ff1744;
+  }
+}
+
+.hero-image-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    text-align: center;
+  }
+  
+  .hero-image {
+    order: -1;
+  }
+  
+  .hero-image-container {
+    height: 400px;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px;
+    min-height: 90vh;
+  }
+  
+  .hero-content {
+    gap: var(--spacing-xl);
+  }
+  
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-image-container {
+    height: 300px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-container {
+    height: 250px;
+    max-width: 250px;
+  }
+}
