@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   padding-top: 80px; /* Espaço para o header fixo */
+  padding-bottom: var(--spacing-3xl); /* respiro no final da seção */
 }
 
 .hero::before {
@@ -117,6 +118,11 @@
   transform: translateX(5px);
 }
 
+/* Espaço extra sob o CTA para evitar que grude no final da seção */
+.hero-cta {
+  margin-bottom: var(--spacing-xl);
+}
+
 .hero-image {
   display: flex;
   justify-content: center;
@@ -174,7 +180,8 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding-top: 100px;
+    padding-top: 140px; /* compensa header maior com underline */
+    padding-bottom: var(--spacing-4xl);
     min-height: 90vh;
   }
   
@@ -184,10 +191,12 @@
   
   .hero-title {
     font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: var(--spacing-lg);
   }
   
   .hero-description {
     font-size: 1rem;
+    margin-bottom: var(--spacing-xl);
   }
   
   .hero-image-container {
@@ -197,8 +206,23 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 170px; /* compensa header maior com underline */
+    padding-bottom: var(--spacing-4xl);
+  }
+
   .hero-image-container {
     height: 250px;
     max-width: 250px;
+  }
+  
+  .hero-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .highlight::after {
+    height: 3px;      /* linha mais fina para telas pequenas */
+    bottom: 2px;      /* ajusta posição da linha vermelha */
   }
 }

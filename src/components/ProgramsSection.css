@@ -1,20 +1,27 @@
 .programs-section {
   padding: var(--spacing-4xl) 0;
-  background-color: var(--color-primary);
+  background: linear-gradient(135deg, #0a0a0a 0%, #141414 100%); /* contraste com seção anterior */
   position: relative;
 }
 
 .programs-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23ea0035" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-  opacity: 0.3;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0 L0 0 0 22" fill="none" stroke="%23ea0035" stroke-width="0.4" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 1;
   z-index: 1;
-  animation: dotsPulse 12s ease-in-out infinite;
+  animation: dotsPulse 14s ease-in-out infinite;
+}
+
+.programs-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 20%, rgba(234,0,53,0.10) 0%, transparent 40%),
+              radial-gradient(circle at 75% 80%, rgba(234,0,53,0.08) 0%, transparent 45%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 @keyframes dotsPulse {
@@ -65,20 +72,9 @@
   flex: 1;
   overflow: hidden;
   position: relative;
-  padding: var(--spacing-xl) 0 var(--spacing-4xl) 0;
+  padding: var(--spacing-xl) var(--spacing-md) var(--spacing-4xl) var(--spacing-md); /* add padding horizontal para centralizar */
 }
 
-.programs-carousel-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 150px;
-  height: 100%;
-  background: linear-gradient(to right, transparent, var(--color-primary));
-  pointer-events: none;
-  z-index: 10;
-}
 
 .programs-carousel-track {
   display: flex;
@@ -102,21 +98,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.program-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(234, 0, 53, 0.1) 100%);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
-
-.program-card:hover::before {
-  opacity: 1;
-}
 
 .program-card:hover {
   transform: translateY(-10px);
@@ -293,6 +274,10 @@
     gap: var(--spacing-md);
   }
   
+  .programs-carousel-track {
+    gap: var(--spacing-md); /* gaps menores para cálculo de translate */
+  }
+
   .programs-carousel-track .program-card {
     flex: 0 0 calc(50% - var(--spacing-xl) * 1 / 2);
   }
@@ -326,9 +311,8 @@
 }
 
 @media (max-width: 480px) {
-  .programs-carousel-track .program-card {
-    flex: 0 0 100%;
-  }
+  .programs-carousel-track { gap: 0; }
+  .programs-carousel-track .program-card { flex: 0 0 100%; }
   
   .carousel-nav-button {
     width: 35px;
@@ -359,5 +343,10 @@
   
   .program-description {
     font-size: 0.9rem;
+  }
+
+  .carousel-indicator {
+    width: 14px;
+    height: 14px;
   }
 }

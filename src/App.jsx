@@ -28,7 +28,7 @@ function App() {
         <SocialProofSection />
       </main>
       <Footer />
-    </div>
+      </div>
   );
 }
 

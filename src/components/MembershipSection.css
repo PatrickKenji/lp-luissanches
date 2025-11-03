@@ -94,6 +94,9 @@
   z-index: 100;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   animation: dropdownFadeIn 0.3s ease-out;
+  max-height: 260px; /* prevenir estouro no mobile */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes dropdownFadeIn {

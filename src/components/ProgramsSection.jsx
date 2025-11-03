@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './ProgramsSection.css';
 
 const ProgramsSection = () => {
@@ -30,7 +30,26 @@ const ProgramsSection = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerView = 3;
+  const [itemsPerView, setItemsPerView] = useState(3);
+
+  // Responsivo: 3 desktop, 2 tablet, 1 mobile
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      if (w <= 480) return 1;
+      if (w <= 768) return 2;
+      return 3;
+    };
+    const apply = () => {
+      const next = compute();
+      setItemsPerView(next);
+      // corrige índice se necessário
+      setCurrentIndex((prev) => Math.min(prev, Math.max(0, programs.length - next)));
+    };
+    apply();
+    window.addEventListener('resize', apply);
+    return () => window.removeEventListener('resize', apply);
+  }, [programs.length]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -96,7 +115,7 @@ const ProgramsSection = () => {
         </div>
 
         <div className="carousel-indicators">
-          {Array.from({ length: programs.length - itemsPerView + 1 }).map((_, index) => (
+          {Array.from({ length: Math.max(1, programs.length - itemsPerView + 1) }).map((_, index) => (
             <button
               key={index}
               className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}

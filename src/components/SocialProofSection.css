@@ -240,9 +240,9 @@
     text-align: left;
   }
   
-  .social-proof-stats {
-    order: -1;
-  }
+  /* Em tablets desativamos qualquer inversão antiga */
+  .social-proof-text { order: 1; }
+  .social-proof-stats { order: 2; }
   
   .stats-grid {
     max-width: 400px;
@@ -258,6 +258,10 @@
   .social-proof-content {
     gap: var(--spacing-2xl);
   }
+  
+  /* Mobile: textos em cima, cards embaixo */
+  .social-proof-text { order: 1; }
+  .social-proof-stats { order: 2; }
   
   .social-proof-description {
     font-size: 1.1rem;
@@ -317,6 +321,8 @@
   .social-proof-cta {
     font-size: 1rem;
     padding: var(--spacing-md) var(--spacing-xl);
+    width: 100%;
+    justify-content: center;
   }
 }
 

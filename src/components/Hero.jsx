@@ -14,8 +14,9 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title animate-fade-in-left">
-              TRANSFORME SEU CORPO E{' '}
-              <span className="highlight">GARANTA RESULTADOS REAIS</span>
+              TRANSFORME SEU<br />
+              CORPO E GARANTA<br />
+              <span className="highlight">RESULTADOS REAIS</span>
             </h1>
             <p className="hero-description animate-fade-in-left">
               Treinos 100% personalizados, acompanhamento constante e suporte direto. 

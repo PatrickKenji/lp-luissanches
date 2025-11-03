@@ -9,6 +9,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: var(--spacing-md) 0;
   transition: all var(--transition-normal);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; /* garante que nada vaze para os lados no header */
 }
 
 .header-content {
@@ -16,6 +19,9 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .logo {
@@ -81,12 +87,25 @@
     gap: var(--spacing-md);
   }
   
+  .header {
+    padding: var(--spacing-md) 0 var(--spacing-lg) 0; /* mais padding-bottom para mostrar underline */
+    overflow: visible; /* permite que a linha vermelha seja visível */
+  }
+  
   .nav {
     order: 3;
     width: 100%;
     justify-content: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-sm);
+    flex-wrap: nowrap; /* manter em uma linha quando possível */
+    overflow-x: auto; /* permite rolar se faltar espaço */
+    max-width: 100%; /* não ultrapassa a largura do header */
+    -webkit-overflow-scrolling: touch;
   }
+
+  /* esconder scrollbar visual mantendo rolagem por gesto */
+  .nav { scrollbar-width: none; -ms-overflow-style: none; }
+  .nav::-webkit-scrollbar { display: none; }
   
   .logo {
     order: 1;
@@ -94,18 +113,44 @@
   
   .btn-sm {
     order: 2;
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: 6px 10px; /* mais compacto */
     font-size: 0.7rem;
+    min-height: 44px; /* área de toque mínima */
+  }
+
+  .nav-link {
+    display: inline-block; /* garantir padding clicável */
+    padding: 8px 3px; /* reduzir largura por item */
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+
+  .nav-link::after {
+    bottom: 2px; /* linha dentro do header, visível */
   }
 }
 
 @media (max-width: 480px) {
-  .nav {
-    gap: var(--spacing-md);
+  .header {
+    padding: var(--spacing-md) 0 var(--spacing-lg) 0; /* mais padding-bottom */
   }
+
+  .nav { gap: 6px; flex-wrap: nowrap; overflow-x: auto; }
   
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
+    padding: 8px 2px;
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+
+  .nav-link::after {
+    bottom: 2px; /* linha dentro do header */
+  }
+
+  .logo-image {
+    height: 42px;
   }
 }
 

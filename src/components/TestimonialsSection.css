@@ -294,4 +294,9 @@
   .phone-screen {
     border-radius: 18px;
   }
+
+  .carousel-dot {
+    width: 14px;
+    height: 14px;
+  }
 }

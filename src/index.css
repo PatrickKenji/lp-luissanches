@@ -57,6 +57,13 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 /* Tipografia */
 h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-weight-bold);
@@ -113,6 +120,11 @@ a:hover {
   overflow: hidden;
 }
 
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .btn-primary {
   background-color: var(--color-accent);
   color: var(--color-text-dark);
@@ -155,6 +167,8 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Seções */
@@ -304,6 +318,9 @@ a:hover {
 
 /* Responsividade */
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 140px; /* evita âncoras sob o header maior */
+  }
   .container {
     padding: 0 var(--spacing-md);
   }
@@ -331,6 +348,12 @@ a:hover {
   .section-title::before,
   .section-title::after {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    scroll-padding-top: 170px; /* header mais alto em telas estreitas */
   }
 }
   border: 1px solid transparent;
