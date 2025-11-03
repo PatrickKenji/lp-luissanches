@@ -184,6 +184,9 @@
     padding-bottom: var(--spacing-4xl);
     min-height: 90vh;
   }
+  /* Menos animação no mobile para performance */
+  .hero::after { animation: none; }
+  .hero-image-container { animation: none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
   
   .hero-content {
     gap: var(--spacing-xl);
@@ -210,6 +213,8 @@
     padding-top: 170px; /* compensa header maior com underline */
     padding-bottom: var(--spacing-4xl);
   }
+  .hero::after { animation: none; }
+  .hero-image-container { animation: none; box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
 
   .hero-image-container {
     height: 250px;

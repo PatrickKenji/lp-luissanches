@@ -265,6 +265,9 @@
 }
 
 @media (max-width: 480px) {
+  /* Reduz animações de fundo no mobile estreito */
+  .testimonials-section::before { animation: none; }
+  .testimonials-section::after { animation: none; }
   .phone-carousel-wrapper {
     gap: var(--spacing-md);
   }

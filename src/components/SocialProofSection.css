@@ -262,6 +262,8 @@
   /* Mobile: textos em cima, cards embaixo */
   .social-proof-text { order: 1; }
   .social-proof-stats { order: 2; }
+  /* Desliga animações de pontos no mobile */
+  .social-proof-section::before { animation: none; }
   
   .social-proof-description {
     font-size: 1.1rem;

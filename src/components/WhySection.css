@@ -253,6 +253,12 @@
   .why-section {
     padding: var(--spacing-2xl) 0;
   }
+  /* Cortar animações no mobile para performance */
+  .why-section::before { animation: none; }
+  .why-image-container { animation: none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  /* Somente mobile: esconder a coluna de imagem e manter apenas os tópicos */
+  .why-image-column { display: none; }
+  .why-content-wrapper { grid-template-columns: 1fr; }
   
   .services-timeline {
     gap: 0;

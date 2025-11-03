@@ -261,6 +261,8 @@
   .programs-section {
     padding: var(--spacing-3xl) 0;
   }
+  /* Desliga animações de fundo no mobile */
+  .programs-section::before { animation: none; }
   
   .programs-intro {
     font-size: 1.1rem;
