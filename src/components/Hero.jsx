@@ -36,6 +36,9 @@ const Hero = () => {
                 src="/luis.jpg" 
                 alt="Personal Trainer profissional"
                 className="hero-image-photo"
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
               />
             </div>
           </div>

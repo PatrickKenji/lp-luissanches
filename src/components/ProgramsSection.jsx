@@ -32,23 +32,36 @@ const ProgramsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsPerView, setItemsPerView] = useState(3);
 
-  // Responsivo: 3 desktop, 2 tablet, 1 mobile
+  // Responsivo usando matchMedia (evita reflows forçados)
   useEffect(() => {
+    const mqMobile = window.matchMedia('(max-width: 480px)');
+    const mqTablet = window.matchMedia('(max-width: 768px)');
+    
     const compute = () => {
-      const w = window.innerWidth;
-      if (w <= 480) return 1;
-      if (w <= 768) return 2;
+      if (mqMobile.matches) return 1;
+      if (mqTablet.matches) return 2;
       return 3;
     };
+    
     const apply = () => {
       const next = compute();
       setItemsPerView(next);
-      // corrige índice se necessário
       setCurrentIndex((prev) => Math.min(prev, Math.max(0, programs.length - next)));
     };
-    apply();
-    window.addEventListener('resize', apply);
-    return () => window.removeEventListener('resize', apply);
+    
+    // Usa requestAnimationFrame para evitar reflows
+    const handleResize = () => {
+      requestAnimationFrame(apply);
+    };
+    
+    apply(); // inicial
+    mqMobile.addEventListener('change', handleResize);
+    mqTablet.addEventListener('change', handleResize);
+    
+    return () => {
+      mqMobile.removeEventListener('change', handleResize);
+      mqTablet.removeEventListener('change', handleResize);
+    };
   }, [programs.length]);
 
   const nextSlide = () => {
