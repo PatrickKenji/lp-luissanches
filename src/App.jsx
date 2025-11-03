@@ -2,7 +2,9 @@ import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeatureBar from './components/FeatureBar';
+import TrainingMethodSection from './components/TrainingMethodSection';
 import ProgramsSection from './components/ProgramsSection';
+import WhySection from './components/WhySection';
 import MembershipSection from './components/MembershipSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import BeforeAfterSection from './components/BeforeAfterSection';
@@ -17,7 +19,9 @@ function App() {
       <main>
         <Hero />
         <FeatureBar />
+        <TrainingMethodSection />
         <ProgramsSection />
+        <WhySection />
         <MembershipSection />
         <TestimonialsSection />
         <BeforeAfterSection />

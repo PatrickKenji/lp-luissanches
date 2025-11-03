@@ -21,7 +21,7 @@ const BeforeAfterSection = () => {
       beforeWeight: 'Confortável',
       afterWeight: 'Definido',
       description: 'Ganhou massa muscular e definição. Alcançou o corpo dos sonhos!',
-      icon: '👨💪'
+      icon: '🧔‍♂️'
     },
     {
       id: 3,
@@ -31,15 +31,6 @@ const BeforeAfterSection = () => {
       afterWeight: 'Força',
       description: 'Saúde completa restaurada. Energia renovada e vitalidade!',
       icon: '👩🏻‍🦱'
-    },
-    {
-      id: 4,
-      name: 'Carlos Oliveira',
-      time: '5 meses',
-      beforeWeight: 'Fraco',
-      afterWeight: 'Fortaleza',
-      description: 'Transformação completa! De sedentário a atleta amador.',
-      icon: '🧔💪'
     }
   ];
 
@@ -49,6 +40,10 @@ const BeforeAfterSection = () => {
 
   const prevSlide = () => {
     setActiveSlide((prev) => (prev - 1 + transformations.length) % transformations.length);
+  };
+
+  const goToSlide = (index) => {
+    setActiveSlide(index);
   };
 
   const handleWhatsAppClick = () => {
@@ -67,80 +62,85 @@ const BeforeAfterSection = () => {
           </p>
         </div>
 
-        <div className="transformations-container">
-          <div className="transformations-grid">
-            {transformations.map((transformation, index) => (
-              <div
-                key={transformation.id}
-                className={`transformation-card ${index === activeSlide ? 'active' : ''}`}
-              >
-                <div className="transformation-header">
-                  <div className="student-avatar">
-                    <span className="avatar-icon">{transformation.icon}</span>
-                  </div>
-                  <div className="student-info">
-                    <h3 className="student-name">{transformation.name}</h3>
-                    <p className="transformation-time">Em apenas {transformation.time}</p>
-                  </div>
-                </div>
+        <div className="transformations-carousel-wrapper">
+          <button 
+            className="carousel-nav carousel-prev"
+            onClick={prevSlide}
+            aria-label="Transformação anterior"
+          >
+            ←
+          </button>
 
-                <div className="transformation-comparison">
-                  <div className="comparison-side before">
-                    <div className="comparison-label">ANTES</div>
-                    <div className="comparison-metric">{transformation.beforeWeight}</div>
-                    <div className="comparison-placeholder before-placeholder">
-                      <span>📸</span>
-                      <p>Foto antes</p>
+          <div className="transformations-carousel-container">
+            <div className="transformations-viewport">
+              {transformations.map((transformation, index) => {
+                const offset = index - activeSlide;
+                return (
+                  <div 
+                    key={transformation.id} 
+                    className={`transformation-slide ${Math.abs(offset) <= 1 ? 'visible' : ''} offset-${offset}`}
+                  >
+                    <div className="transformation-card">
+                      <div className="transformation-header">
+                        <div className="student-avatar">
+                          <span className="avatar-icon">{transformation.icon}</span>
+                        </div>
+                        <div className="student-info">
+                          <h3 className="student-name">{transformation.name}</h3>
+                          <p className="transformation-time">Em apenas {transformation.time}</p>
+                        </div>
+                      </div>
+
+                      <div className="transformation-comparison">
+                        <div className="comparison-side before">
+                          <div className="comparison-label">ANTES</div>
+                          <div className="comparison-metric">{transformation.beforeWeight}</div>
+                          <div className="comparison-placeholder before-placeholder">
+                            <span>📸</span>
+                            <p>Foto antes</p>
+                          </div>
+                        </div>
+
+                        <div className="comparison-divider">
+                          <span className="arrow-icon">→</span>
+                        </div>
+
+                        <div className="comparison-side after">
+                          <div className="comparison-label after-label">DEPOIS</div>
+                          <div className="comparison-metric after-metric">{transformation.afterWeight}</div>
+                          <div className="comparison-placeholder after-placeholder">
+                            <span>📸</span>
+                            <p>Foto depois</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="transformation-description">{transformation.description}</p>
                     </div>
                   </div>
-
-                  <div className="comparison-divider">
-                    <span className="arrow-icon">→</span>
-                  </div>
-
-                  <div className="comparison-side after">
-                    <div className="comparison-label after-label">DEPOIS</div>
-                    <div className="comparison-metric after-metric">{transformation.afterWeight}</div>
-                    <div className="comparison-placeholder after-placeholder">
-                      <span>📸</span>
-                      <p>Foto depois</p>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="transformation-description">{transformation.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="transformations-navigation">
-            <button 
-              className="nav-button prev"
-              onClick={prevSlide}
-              aria-label="Transformação anterior"
-            >
-              ←
-            </button>
-
-            <div className="transformation-dots">
-              {transformations.map((_, index) => (
-                <button
-                  key={index}
-                  className={`dot ${index === activeSlide ? 'active' : ''}`}
-                  onClick={() => setActiveSlide(index)}
-                  aria-label={`Ir para transformação ${index + 1}`}
-                />
-              ))}
+                );
+              })}
             </div>
-
-            <button 
-              className="nav-button next"
-              onClick={nextSlide}
-              aria-label="Próxima transformação"
-            >
-              →
-            </button>
           </div>
+
+          <button 
+            className="carousel-nav carousel-next"
+            onClick={nextSlide}
+            aria-label="Próxima transformação"
+          >
+            →
+          </button>
+        </div>
+
+        <div className="transformation-indicators">
+          {transformations.map((_, index) => (
+            <button
+              key={index}
+              className={`indicator-dot ${index === activeSlide ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Ir para transformação ${index + 1}`}
+            />
+          ))}
         </div>
 
         <div className="cta-container">

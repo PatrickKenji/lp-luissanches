@@ -4,34 +4,34 @@ import './SocialProofSection.css';
 const SocialProofSection = () => {
   const handleWhatsAppClick = () => {
     const phoneNumber = '5511999999999'; // Substitua pelo número real
-    const message = encodeURIComponent('Olá! Quero começar minha transformação hoje!');
+    const message = encodeURIComponent('Olá! Quero participar do grupo gratuito!');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
-  const socialProof = [
+  const benefits = [
     {
       id: 1,
-      icon: '👥',
-      number: '10K+',
-      description: 'Alunos Ativos'
+      icon: '💡',
+      title: 'Dicas Exclusivas',
+      description: 'Receba dicas diárias de treino, nutrição e motivação'
     },
     {
       id: 2,
-      icon: '💪',
-      number: '500+',
-      description: 'Transformações Completadas'
+      icon: '🎯',
+      title: 'Meta Coletiva',
+      description: 'Faça parte de uma comunidade focada em resultados'
     },
     {
       id: 3,
-      icon: '⭐',
-      number: '4.9',
-      description: 'Avaliação Média'
+      icon: '📱',
+      title: 'Suporte Imediato',
+      description: 'Tire suas dúvidas em tempo real comigo e outros membros'
     },
     {
       id: 4,
-      icon: '🏆',
-      number: '98%',
-      description: 'Taxa de Satisfação'
+      icon: '🎁',
+      title: '100% Gratuito',
+      description: 'Acesso completo sem nenhum custo ou compromisso'
     }
   ];
 
@@ -41,29 +41,30 @@ const SocialProofSection = () => {
         <div className="social-proof-content">
           <div className="social-proof-text">
             <div className="section-header">
-              <h2 className="section-title">RESULTADOS COMPROVADOS</h2>
+              <h2 className="section-title">JUNTE-SE À COMUNIDADE</h2>
             </div>
             <p className="social-proof-description">
-              Junte-se a milhares de pessoas que já transformaram suas vidas com nosso método de treinamento personalizado.
+              Participe do nosso grupo exclusivo e gratuito no WhatsApp. Receba dicas diárias, 
+              compartilhe sua jornada e faça parte de uma comunidade que está transformando vidas.
             </p>
             <button 
               className="btn btn-primary btn-lg social-proof-cta"
               onClick={handleWhatsAppClick}
             >
-              QUERO COMECAR AGORA
+              QUERO ENTRAR NO GRUPO
               <span className="btn-arrow">→</span>
             </button>
           </div>
           
           <div className="social-proof-stats">
             <div className="stats-grid">
-              {socialProof.map((stat) => (
-                <div key={stat.id} className="stat-card">
+              {benefits.map((benefit) => (
+                <div key={benefit.id} className="stat-card">
                   <div className="stat-icon">
-                    <span>{stat.icon}</span>
+                    <span>{benefit.icon}</span>
                   </div>
-                  <div className="stat-number">{stat.number}</div>
-                  <div className="stat-description">{stat.description}</div>
+                  <div className="stat-title">{benefit.title}</div>
+                  <div className="stat-description">{benefit.description}</div>
                 </div>
               ))}
             </div>
@@ -75,3 +76,4 @@ const SocialProofSection = () => {
 };
 
 export default SocialProofSection;
+

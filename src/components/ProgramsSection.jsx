@@ -1,82 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProgramsSection.css';
 
 const ProgramsSection = () => {
   const programs = [
     {
       id: 1,
-      title: 'YOGA',
-      description: 'Conecte-se com seu corpo através de movimentos fluidos e respiração consciente.',
-      icon: '🧘‍♀️',
-      color: '#FF6B6B'
+      icon: '💪',
+      title: 'Hipertrofia e performance',
+      description: 'Pra quem quer aumentar massa magra e evoluir no treino sem lesões, com base em técnica, progressão e equilíbrio.'
     },
     {
       id: 2,
-      title: 'CARDIO AND HIIT',
-      description: 'Queime calorias e melhore sua resistência com treinos de alta intensidade.',
-      icon: '💪',
-      color: '#4ECDC4'
+      icon: '⚡',
+      title: 'Força e condicionamento',
+      description: 'Pra quem busca melhorar o desempenho físico e ganhar resistência, tanto em esportes quanto no dia a dia.'
     },
     {
       id: 3,
-      title: 'STRENGTH TRAINING',
-      description: 'Construa músculos fortes e definidos com exercícios de força progressiva.',
-      icon: '🏋️‍♂️',
-      color: '#45B7D1'
+      icon: '🔥',
+      title: 'Emagrecimento saudável',
+      description: 'Pra quem quer reduzir gordura corporal e ganhar disposição, sem dietas malucas nem treinos exaustivos.'
     },
     {
       id: 4,
-      title: 'MOBILITY',
-      description: 'Melhore sua flexibilidade e movimentação para uma vida mais ativa.',
-      icon: '🤸‍♀️',
-      color: '#96CEB4'
+      icon: '🧘',
+      title: 'Saúde e qualidade de vida',
+      description: 'Pra quem quer se sentir bem, recuperar o prazer de treinar e manter o corpo ativo de forma leve e sustentável.'
     }
   ];
 
-  const handleWhatsAppClick = (program) => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
-    const message = encodeURIComponent(`Olá! Gostaria de saber mais sobre o programa ${program.title}.`);
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const itemsPerView = 3;
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex >= programs.length - itemsPerView ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex <= 0 ? programs.length - itemsPerView : prevIndex - 1
+    );
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
   };
 
   return (
     <section className="programs-section" id="programs">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">OUR PROGRAMS</h2>
+          <h2 className="section-title">PRA QUEM É O MEU ACOMPANHAMENTO</h2>
+          <p className="programs-intro">
+            Não existe um único tipo de resultado. Cada pessoa tem uma motivação diferente 
+            e o treino certo precisa respeitar isso.
+          </p>
+          <p className="programs-intro-secondary">
+            O que eu faço é ajustar o caminho pra que você conquiste o que quer, 
+            com saúde e constância.
+          </p>
         </div>
         
-        <div className="programs-grid">
-          {programs.map((program) => (
-            <div key={program.id} className="program-card">
-              <div className="program-image">
-                <div 
-                  className="program-icon"
-                  style={{ backgroundColor: program.color }}
-                >
-                  <span className="icon">{program.icon}</span>
+        <div className="programs-carousel-wrapper">
+          <button className="carousel-nav-button carousel-nav-prev" onClick={prevSlide}>
+            ←
+          </button>
+          
+          <div className="programs-carousel-container">
+            <div 
+              className="programs-carousel-track"
+              style={{ transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` }}
+            >
+              {programs.map((program) => (
+                <div key={program.id} className="program-card">
+                  <div className="program-image">
+                    <div className="program-icon">
+                      <span className="icon">{program.icon}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="program-content">
+                    <h3 className="program-title">{program.title}</h3>
+                    <p className="program-description">{program.description}</p>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="program-content">
-                <div className="program-header">
-                  <h3 className="program-title">{program.title}</h3>
-                  <span className="program-arrow">→</span>
-                </div>
-                <p className="program-description">{program.description}</p>
-                <button 
-                  className="program-cta"
-                  onClick={() => handleWhatsAppClick(program)}
-                >
-                  Saiba Mais
-                </button>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+          
+          <button className="carousel-nav-button carousel-nav-next" onClick={nextSlide}>
+            →
+          </button>
         </div>
-        
-        <div className="programs-indicator">
-          <div className="indicator-line"></div>
+
+        <div className="carousel-indicators">
+          {Array.from({ length: programs.length - itemsPerView + 1 }).map((_, index) => (
+            <button
+              key={index}
+              className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -84,5 +111,3 @@ const ProgramsSection = () => {
 };
 
 export default ProgramsSection;
-
-
