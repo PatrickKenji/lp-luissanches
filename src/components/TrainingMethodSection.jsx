@@ -48,7 +48,7 @@ const TrainingMethodSection = () => {
   };
 
   return (
-    <section className="training-method-section" id="method">
+    <section className="training-method-section" id="metodo">
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">O MÉTODO SANCHES</h2>

@@ -3,11 +3,11 @@ import './FeatureBar.css';
 
 const FeatureBar = () => {
   const features = [
-    'NEW VIDEOS DAILY',
-    'BEGINNERS FRIENDLY',
-    'LIVE CONSULTANCY',
-    '20+ TRAINERS',
-    'TRAIN ANY'
+    '100% PERSONALIZADO',
+    'SUPORTE DIRETO',
+    'RESULTADOS GARANTIDOS',
+    'METODOLOGIA COMPROVADA',
+    'GRUPO GRATUITO'
   ];
 
   return (

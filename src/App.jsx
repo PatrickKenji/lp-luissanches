@@ -22,9 +22,9 @@ function App() {
         <TrainingMethodSection />
         <ProgramsSection />
         <WhySection />
-        <MembershipSection />
         <TestimonialsSection />
         <BeforeAfterSection />
+        <MembershipSection />
         <SocialProofSection />
       </main>
       <Footer />

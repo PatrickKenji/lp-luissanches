@@ -2,25 +2,14 @@ import React from 'react';
 import './Footer.css';
 
 const Footer = () => {
-  const handleWhatsAppClick = () => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
-    const message = encodeURIComponent('Olá! Quero fazer parte da comunidade e começar minha transformação!');
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
   const footerLinks = [
-    { name: 'Programs', href: '#programs' },
-    { name: 'Membership', href: '#membership' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Community', href: '#community' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact us', href: '#contact' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Store', href: '#store' }
+    { name: 'Método', href: '#metodo' },
+    { name: 'Resultados', href: '#resultados' },
+    { name: 'Consultoria', href: '#consultoria' },
+    { name: 'Comunidade', href: '#comunidade' }
   ];
 
   const socialLinks = [
-    { name: 'Twitter', icon: '𝕏', href: '#' },
     { name: 'Instagram', icon: '📷', href: '#' }
   ];
 
@@ -45,22 +34,6 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          
-          <div className="footer-cta">
-            <div className="cta-content">
-              <h3 className="cta-title">GAIN YOUR CHANGE NOW!</h3>
-              <p className="cta-description">
-                Stay motivated and engaged with a little help from a supportive community of other members.
-              </p>
-              <button 
-                className="btn btn-primary btn-lg footer-cta-button"
-                onClick={handleWhatsAppClick}
-              >
-                JOIN NOW
-                <span className="btn-arrow">→</span>
-              </button>
-            </div>
-          </div>
         </div>
         
         <div className="footer-bottom">
@@ -78,7 +51,7 @@ const Footer = () => {
           </div>
           
           <div className="footer-copyright">
-            <p>Copyright © 2023 Rayclub. All rights reserved. Made with love by Rayclub Project.</p>
+            <p>Copyright © 2024 Personal Trainer. Todos os direitos reservados.</p>
           </div>
         </div>
       </div>

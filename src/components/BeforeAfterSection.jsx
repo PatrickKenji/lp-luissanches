@@ -53,7 +53,7 @@ const BeforeAfterSection = () => {
   };
 
   return (
-    <section className="before-after-section" id="results">
+    <section className="before-after-section" id="resultados">
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">TRANSFORMAÇÕES REAIS</h2>

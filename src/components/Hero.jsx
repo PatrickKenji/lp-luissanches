@@ -14,18 +14,18 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title animate-fade-in-left">
-              WELCOME TO THE MOST WANTED{' '}
-              <span className="highlight">ONLINE PERSONAL TRAINING</span>
+              TRANSFORME SEU CORPO E{' '}
+              <span className="highlight">GARANTA RESULTADOS REAIS</span>
             </h1>
             <p className="hero-description animate-fade-in-left">
-              Transforme sua vida com treinos personalizados, acompanhamento profissional 
-              e uma comunidade motivada. Resultados garantidos ou seu dinheiro de volta.
+              Treinos 100% personalizados, acompanhamento constante e suporte direto. 
+              Não é sobre treinos prontos, é sobre uma metodologia que realmente funciona.
             </p>
             <button 
               className="btn btn-primary btn-lg hero-cta animate-fade-in-left"
               onClick={handleWhatsAppClick}
             >
-              JOIN NOW
+              QUERO COMEÇAR AGORA
               <span className="btn-arrow">→</span>
             </button>
           </div>

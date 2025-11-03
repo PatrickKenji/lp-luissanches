@@ -36,7 +36,7 @@ const SocialProofSection = () => {
   ];
 
   return (
-    <section className="social-proof-section" id="social-proof">
+    <section className="social-proof-section" id="comunidade">
       <div className="container">
         <div className="social-proof-content">
           <div className="social-proof-text">

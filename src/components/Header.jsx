@@ -23,9 +23,10 @@ const Header = () => {
 
           {/* Navigation */}
           <nav className="nav">
-            <a href="#programs" className="nav-link">PROGRAMS</a>
-            <a href="#testimonials" className="nav-link">TESTIMONIALS</a>
-            <a href="#contact" className="nav-link">CONTACT</a>
+            <a href="#metodo" className="nav-link">MÉTODO</a>
+            <a href="#resultados" className="nav-link">RESULTADOS</a>
+            <a href="#consultoria" className="nav-link">CONSULTORIA</a>
+            <a href="#comunidade" className="nav-link">COMUNIDADE</a>
           </nav>
 
           {/* CTA Button */}
@@ -33,7 +34,7 @@ const Header = () => {
             className="btn btn-secondary btn-sm"
             onClick={handleWhatsAppClick}
           >
-            SIGN IN FOR MEMBERS
+            COMEÇAR AGORA
           </button>
         </div>
       </div>

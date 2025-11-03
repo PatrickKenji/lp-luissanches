@@ -108,7 +108,7 @@ const MembershipSection = () => {
   const selectedPeriodData = periods.find(p => p.id === selectedPeriod);
 
   return (
-    <section className="membership-section" id="membership">
+    <section className="membership-section" id="consultoria">
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">CONSULTORIA PERSONALIZADA</h2>
