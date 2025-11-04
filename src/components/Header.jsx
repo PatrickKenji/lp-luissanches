@@ -7,25 +7,39 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
-    };
-
+    // Usa matchMedia para evitar reflows forçados
+    const mqMobile = window.matchMedia('(max-width: 768px)');
+    
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-      if (window.innerWidth > 768) {
+      const isMobileValue = mqMobile.matches;
+      setIsMobile(isMobileValue);
+      if (!isMobileValue) {
         setIsMenuOpen(false); // Fecha menu se redimensionar para desktop
       }
     };
-
-    checkMobile();
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', checkMobile);
+    
+    // Scroll handler com requestAnimationFrame para evitar reflows
+    let scrollTimeout;
+    const handleScroll = () => {
+      if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+      }
+      scrollTimeout = requestAnimationFrame(() => {
+        const scrollPosition = window.scrollY;
+        setIsScrolled(scrollPosition > 50);
+      });
+    };
+    
+    checkMobile(); // Inicial
+    mqMobile.addEventListener('change', checkMobile);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
+      mqMobile.removeEventListener('change', checkMobile);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', checkMobile);
+      if (scrollTimeout) {
+        cancelAnimationFrame(scrollTimeout);
+      }
     };
   }, []);
 
