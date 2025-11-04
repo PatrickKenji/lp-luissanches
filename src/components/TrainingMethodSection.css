@@ -187,10 +187,10 @@
   background-color: var(--color-text-dark);
   color: var(--color-accent);
   border: 2px solid var(--color-text-dark);
-  padding: var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-2xl); /* Padrão btn-lg */
+  font-size: 1.1rem; /* Padrão btn-lg */
   border-radius: 50px;
   font-family: inherit;
-  font-size: 1.1rem;
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -202,6 +202,7 @@
   position: relative;
   z-index: 2;
   margin-top: var(--spacing-md);
+  white-space: nowrap;
 }
 
 .step-cta-button:hover {
@@ -269,8 +270,7 @@
   }
   
   .step-cta-button {
-    font-size: 1rem;
-    padding: var(--spacing-sm) var(--spacing-lg);
+    /* Mantém o padrão btn-lg mesmo no mobile */
   }
 }
 

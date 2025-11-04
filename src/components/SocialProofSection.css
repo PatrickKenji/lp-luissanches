@@ -94,8 +94,7 @@
 }
 
 .social-proof-cta {
-  font-size: 1.2rem;
-  padding: var(--spacing-xl) var(--spacing-3xl);
+  /* Usa o padrão do .btn-lg para padding e font-size */
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-md);

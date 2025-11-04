@@ -214,8 +214,7 @@
 }
 
 .why-cta-button {
-  font-size: 1.2rem;
-  padding: var(--spacing-lg) var(--spacing-3xl);
+  /* Usa o padrão do .btn-lg para padding e font-size */
   animation: floatButton 3s ease-in-out infinite;
 }
 

@@ -102,8 +102,7 @@
 }
 
 .hero-cta {
-  font-size: 1.1rem;
-  padding: var(--spacing-lg) var(--spacing-2xl);
+  /* Usa o padrão do .btn-lg */
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-md);

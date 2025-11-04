@@ -138,6 +138,12 @@ a:hover {
   box-shadow: 0 8px 25px rgba(234, 0, 53, 0.3);
 }
 
+.btn-lg {
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: 1.1rem;
+  font-weight: var(--font-weight-bold);
+}
+
 .btn-secondary {
   background-color: transparent;
   color: var(--color-text-primary);

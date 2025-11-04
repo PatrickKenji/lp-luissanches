@@ -345,12 +345,13 @@
 
 .membership-cta {
   width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-2xl); /* Padrão btn-lg */
+  font-size: 1.1rem; /* Padrão btn-lg */
   background-color: transparent;
   color: var(--color-text-primary);
   border: 2px solid var(--color-text-primary);
   border-radius: 50px;
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
