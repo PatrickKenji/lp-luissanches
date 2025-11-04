@@ -43,14 +43,39 @@ const Header = () => {
     };
   }, []);
 
-  // Previne scroll quando menu está aberto no mobile
+  // Previne scroll quando menu está aberto no mobile - otimizado para evitar reflow
   useEffect(() => {
-    if (isMenuOpen && isMobile) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    if (!isMobile) return;
+    
+    // Usa requestAnimationFrame para evitar reflow forçado
+    const updateOverflow = () => {
+      if (isMenuOpen) {
+        // Salva a posição do scroll antes de bloquear
+        const scrollY = window.scrollY;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollY}px`;
+        document.body.style.width = '100%';
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Restaura a posição do scroll
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        if (scrollY) {
+          window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+      }
+    };
+    
+    requestAnimationFrame(updateOverflow);
+    
     return () => {
+      // Cleanup
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
     };
   }, [isMenuOpen, isMobile]);

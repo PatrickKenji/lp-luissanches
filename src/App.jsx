@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeatureBar from './components/FeatureBar';
-import TrainingMethodSection from './components/TrainingMethodSection';
-import ProgramsSection from './components/ProgramsSection';
-import WhySection from './components/WhySection';
-import MembershipSection from './components/MembershipSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import BeforeAfterSection from './components/BeforeAfterSection';
-import SocialProofSection from './components/SocialProofSection';
-import Footer from './components/Footer';
 import './App.css';
+
+// Lazy load componentes abaixo do fold para reduzir JavaScript inicial
+const TrainingMethodSection = lazy(() => import('./components/TrainingMethodSection'));
+const ProgramsSection = lazy(() => import('./components/ProgramsSection'));
+const WhySection = lazy(() => import('./components/WhySection'));
+const TestimonialsSection = lazy(() => import('./components/TestimonialsSection'));
+const BeforeAfterSection = lazy(() => import('./components/BeforeAfterSection'));
+const MembershipSection = lazy(() => import('./components/MembershipSection'));
+const SocialProofSection = lazy(() => import('./components/SocialProofSection'));
+const Footer = lazy(() => import('./components/Footer'));
+
+// Fallback minimalista para Suspense
+const SectionSkeleton = () => (
+  <div style={{ minHeight: '400px', background: 'transparent' }} aria-hidden="true" />
+);
 
 function App() {
   return (
@@ -19,16 +26,32 @@ function App() {
       <main>
         <Hero />
         <FeatureBar />
-        <TrainingMethodSection />
-        <ProgramsSection />
-        <WhySection />
-        <TestimonialsSection />
-        <BeforeAfterSection />
-        <MembershipSection />
-        <SocialProofSection />
+        <Suspense fallback={<SectionSkeleton />}>
+          <TrainingMethodSection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <ProgramsSection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <WhySection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <TestimonialsSection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <BeforeAfterSection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <MembershipSection />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <SocialProofSection />
+        </Suspense>
       </main>
-      <Footer />
-      </div>
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
+    </div>
   );
 }
 
