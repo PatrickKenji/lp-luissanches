@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'; 
+import React, { Suspense, lazy } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeatureBar from './components/FeatureBar';
