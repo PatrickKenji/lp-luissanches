@@ -51,7 +51,7 @@ function App() {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
-    </div>
+      </div>
   );
 }
 
