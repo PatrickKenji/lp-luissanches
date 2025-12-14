@@ -45,12 +45,15 @@
   overflow: hidden;
 }
 
-/* Ondas abstratas fluindo */
+/* Ondas abstratas fluindo - otimizadas */
 .hero-wave {
   position: absolute;
   width: 200%;
   height: 100%;
   opacity: 0.15;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .hero-wave-1 {
@@ -64,6 +67,7 @@
   );
   animation: wave-flow-1 25s linear infinite;
   filter: blur(80px);
+  transform: translateZ(0);
 }
 
 .hero-wave-2 {
@@ -77,6 +81,7 @@
   );
   animation: wave-flow-2 30s linear infinite;
   filter: blur(100px);
+  transform: translateZ(0);
 }
 
 .hero-wave-3 {
@@ -87,13 +92,15 @@
   );
   animation: wave-pulse 20s ease-in-out infinite;
   filter: blur(120px);
+  transform: translateZ(0);
 }
 
-/* Partículas flutuantes */
+/* Partículas flutuantes - otimizadas */
 .hero-particles {
   position: absolute;
   width: 100%;
   height: 100%;
+  contain: layout style paint;
 }
 
 .particle {
@@ -104,41 +111,44 @@
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(234, 0, 53, 0.8);
   animation: particle-float 30s linear infinite;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-/* Animações */
+/* Animações - otimizadas para GPU */
 @keyframes wave-flow-1 {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0%) translateZ(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
 }
 
 @keyframes wave-flow-2 {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateZ(0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(0%) translateZ(0);
   }
 }
 
 @keyframes wave-pulse {
   0%, 100% {
-    transform: scale(1);
+    transform: scale(1) translateZ(0);
     opacity: 0.15;
   }
   50% {
-    transform: scale(1.3);
+    transform: scale(1.3) translateZ(0);
     opacity: 0.25;
   }
 }
 
 @keyframes particle-float {
   0% {
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(0) translateZ(0);
     opacity: 0;
   }
   10% {
@@ -148,7 +158,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(-100vh) translateX(50px);
+    transform: translateY(-100vh) translateX(50px) translateZ(0);
     opacity: 0;
   }
 }
@@ -359,6 +369,9 @@
   animation: cardFadeIn 0.8s ease-out forwards;
   opacity: 0;
   transform: translateY(30px);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 /* Animação de entrada do card */
