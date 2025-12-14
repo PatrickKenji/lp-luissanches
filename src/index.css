@@ -144,6 +144,15 @@ a:hover {
   font-weight: var(--font-weight-bold);
 }
 
+.btn-arrow {
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
 .btn-secondary {
   background-color: transparent;
   color: var(--color-text-primary);

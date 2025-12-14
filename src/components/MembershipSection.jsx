@@ -12,35 +12,38 @@ const MembershipSection = () => {
       description: 'A melhor combinação entre atendimento presencial e online para resultados completos',
       recommended: false,
       benefits: [
-        'Avaliação presencial completa',
-        'Consultoria online com 2 sessões mensais',
-        'Flexibilidade para sessões presenciais ou online',
-        'Acompanhamento personalizado em tempo real'
+        'Avaliação inicial presencial',
+        'Plano de treino individualizado',
+        'Treinos no app com vídeos explicativos',
+        'Sessões presenciais na 1ª e 3ª semana de cada mês',
+        'Ajustes e progressões constantes do treino',
+        'Acompanhamento técnico para execução correta',
+        'Feedback após cada sessão presencial'
       ],
       plans: {
         mensal: {
-          price: 300,
+          price: 437,
           period: '1 mês',
           sessions: '2 aulas presenciais + consultoria online',
-          perMonth: 300
+          perMonth: 437
         },
         trimestral: {
-          price: 720,
+          price: 1191,
           period: '3 meses',
           sessions: '6 aulas presenciais + consultoria online',
-          perMonth: 240
+          perMonth: 397
         },
         semestral: {
-          price: 1320,
+          price: 2082,
           period: '6 meses',
           sessions: '12 aulas presenciais + consultoria online',
-          perMonth: 220
+          perMonth: 347
         },
         anual: {
-          price: 2400,
+          price: 3564,
           period: '12 meses',
           sessions: '24 aulas presenciais + consultoria online',
-          perMonth: 200
+          perMonth: 297
         }
       }
     },
@@ -50,35 +53,38 @@ const MembershipSection = () => {
       description: 'Transforme sua rotina com acompanhamento completo, direto do conforto da sua casa',
       recommended: true,
       benefits: [
-        'Reunião inicial de avaliação de 30 minutos',
-        'Consultoria completa 100% personalizada',
-        '2 sessões mensais de acompanhamento',
-        'Suporte direto e ajustes em tempo real'
+        'Plano de treino individualizado',
+        'Treinos no app com vídeos explicativos',
+        'Acompanhamento online contínuo',
+        'Ajustes periódicos do treino',
+        'Reavaliação a cada 2 meses',
+        'Suporte direto para dúvidas e correções',
+        'Flexibilidade total'
       ],
       plans: {
         mensal: {
-          price: 200,
+          price: 327,
           period: '1 mês',
           sessions: '2 sessões online + suporte',
-          perMonth: 200
+          perMonth: 327
         },
         trimestral: {
-          price: 480,
+          price: 891,
           period: '3 meses',
           sessions: '6 sessões online + suporte',
-          perMonth: 160
+          perMonth: 297
         },
         semestral: {
-          price: 840,
+          price: 1482,
           period: '6 meses',
           sessions: '12 sessões online + suporte',
-          perMonth: 140
+          perMonth: 247
         },
         anual: {
-          price: 1440,
+          price: 2364,
           period: '12 meses',
           sessions: '24 sessões online + suporte',
-          perMonth: 120
+          perMonth: 197
         }
       }
     }
@@ -86,15 +92,19 @@ const MembershipSection = () => {
 
   const periods = [
     { id: 'mensal', label: 'MENSAL', months: '1 mês', discount: 0 },
-    { id: 'trimestral', label: 'TRIMESTRAL', months: '3 meses', discount: 20 },
-    { id: 'semestral', label: 'SEMESTRAL', months: '6 meses', discount: 27 },
-    { id: 'anual', label: 'ANUAL', months: '12 meses', discount: 33 }
+    { id: 'trimestral', label: 'TRIMESTRAL', months: '3 meses', discount: 9 },
+    { id: 'semestral', label: 'SEMESTRAL', months: '6 meses', discount: 24 },
+    { id: 'anual', label: 'ANUAL', months: '12 meses', discount: 40 }
   ];
+
+  const formatPrice = (price) => {
+    return price.toFixed(2).replace('.', ',');
+  };
 
   const handleWhatsAppClick = (consultancyType) => {
     const phoneNumber = '5511999999999'; // Substitua pelo número real
     const plan = consultancyType.plans[selectedPeriod];
-    const message = encodeURIComponent(`Olá! Quero contratar a consultoria ${consultancyType.title} ${selectedPeriod.toUpperCase()} - ${plan.period} por R$ ${plan.price.toFixed(2)}`);
+    const message = encodeURIComponent(`Olá! Quero contratar a consultoria ${consultancyType.title} ${selectedPeriod.toUpperCase()} - ${plan.period} por R$ ${formatPrice(plan.price)}`);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -161,7 +171,25 @@ const MembershipSection = () => {
                 
                 <div className="membership-header">
                   <div className="membership-icon">
-                    <span className="icon-number">{consultancy.id === 'hibrido' ? 'H' : 'O'}</span>
+                    {consultancy.id === 'hibrido' ? (
+                      <svg className="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {/* Ícone híbrido: pessoa + dispositivo móvel */}
+                        <circle cx="9" cy="7" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                        <path d="M3 20C3 16 6 13 9 13C10.5 13 11.8 13.6 12.7 14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+                        <rect x="15" y="6" width="6" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                        <path d="M17 9H19M17 11H19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                        <circle cx="18" cy="14" r="1" fill="currentColor"/>
+                      </svg>
+                    ) : (
+                      <svg className="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {/* Ícone monitor/computador */}
+                        <rect x="2" y="4" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                        <path d="M8 18H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        <path d="M12 18V20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        <rect x="5" y="7" width="14" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+                        <circle cx="12" cy="11" r="1.5" fill="currentColor"/>
+                      </svg>
+                    )}
                   </div>
                   <h3 className="membership-title">{consultancy.title}</h3>
                 </div>
@@ -169,8 +197,8 @@ const MembershipSection = () => {
                 <p className="membership-description">{consultancy.description}</p>
                 
                 <div className="membership-price">
-                  <span className="price-value">R$ {currentPlan.price.toFixed(2)}</span>
-                  <span className="price-per-month">ou R$ {currentPlan.perMonth.toFixed(2)}/mês</span>
+                  <span className="price-value">R$ {formatPrice(currentPlan.perMonth)}/mês</span>
+                  <span className="price-total">Total: R$ {formatPrice(currentPlan.price)}</span>
                 </div>
                 
                 <div className="plan-details">
