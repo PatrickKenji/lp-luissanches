@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="hero-wave hero-wave-2"></div>
         <div className="hero-wave hero-wave-3"></div>
         <div className="hero-particles">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(window.innerWidth < 768 ? 5 : 20)].map((_, i) => (
             <span key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,

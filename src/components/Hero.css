@@ -676,6 +676,12 @@
   .hero-cta-group {
     justify-content: center;
   }
+  
+  /* Desabilita animações pesadas no tablet */
+  .hero-wave {
+    animation: none !important;
+    opacity: 0.08;
+  }
 }
 
 @media (max-width: 768px) {
@@ -704,6 +710,9 @@
 
   .hero-card {
     padding: var(--spacing-xl);
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 
   .hero-card-stats {
@@ -719,6 +728,30 @@
   .hero-card-cta {
     width: 100%;
     justify-content: center;
+  }
+  
+  /* Mobile: Desabilita ondas e reduz partículas */
+  .hero-wave {
+    display: none;
+  }
+  
+  .particle {
+    animation-duration: 40s !important;
+  }
+  
+  /* Simplifica efeitos de hover no mobile */
+  .hero-stat-item::after {
+    display: none;
+  }
+  
+  .hero-stat-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Remove shimmer do card no mobile */
+  .hero-card::before {
+    display: none;
   }
 }
 
@@ -762,5 +795,19 @@
 
   .hero-stat-value {
     font-size: 1.25rem;
+  }
+  
+  /* Mobile pequeno: Performance máxima */
+  .hero::before {
+    animation: none !important;
+    transform: translate(0, 0);
+  }
+  
+  .hero-particles {
+    display: none;
+  }
+  
+  .hero-animated-bg {
+    opacity: 0.5;
   }
 }
