@@ -102,7 +102,7 @@ const MembershipSection = () => {
   };
 
   const handleWhatsAppClick = (consultancyType) => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
+    const phoneNumber = '5544999044206';
     const plan = consultancyType.plans[selectedPeriod];
     const message = encodeURIComponent(`Olá! Quero contratar a consultoria ${consultancyType.title} ${selectedPeriod.toUpperCase()} - ${plan.period} por R$ ${formatPrice(plan.price)}`);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');

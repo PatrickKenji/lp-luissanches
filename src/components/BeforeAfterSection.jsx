@@ -47,7 +47,7 @@ const BeforeAfterSection = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5511999999999';
+    const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Quero ter resultados como esses! Como posso começar?');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };

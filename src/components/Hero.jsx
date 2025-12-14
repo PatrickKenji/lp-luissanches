@@ -3,7 +3,7 @@ import './Hero.css';
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
+    const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Olá! Quero começar minha transformação hoje!');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -15,6 +15,13 @@ const Hero = () => {
 
   return (
     <section className="hero">
+      <div className="hero-decorative-shapes">
+        <span className="hero-shape hero-shape-1"></span>
+        <span className="hero-shape hero-shape-2"></span>
+        <span className="hero-shape hero-shape-3"></span>
+        <span className="hero-shape hero-shape-4"></span>
+        <span className="hero-shape hero-shape-5"></span>
+      </div>
       <div className="container">
         <div className="hero-content">
           {/* Conteúdo principal centralizado */}
@@ -30,13 +37,6 @@ const Hero = () => {
             </p>
 
             <div className="hero-cta-group">
-              <button 
-                className="btn btn-primary btn-lg"
-                onClick={handleWhatsAppClick}
-              >
-                QUERO COMEÇAR AGORA
-                <span className="btn-arrow">→</span>
-              </button>
               <button 
                 className="btn btn-secondary btn-lg"
                 onClick={handleGetAPIClick}

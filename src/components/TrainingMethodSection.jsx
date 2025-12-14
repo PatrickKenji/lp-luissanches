@@ -42,7 +42,7 @@ const TrainingMethodSection = () => {
   ];
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
+    const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Olá! Quero começar o processo com você!');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -51,7 +51,7 @@ const TrainingMethodSection = () => {
     <section className="training-method-section" id="metodo">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">O MÉTODO SANCHES</h2>
+          <h2 className="section-title">CONHEÇA MEU MÉTODO</h2>
           <p className="method-tagline">
             Um processo simples, humano e feito pra gerar resultado com saúde
           </p>

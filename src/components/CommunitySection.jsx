@@ -3,7 +3,7 @@ import './CommunitySection.css';
 
 const CommunitySection = () => {
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5511999999999'; // Substitua pelo número real
+    const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Olá! Quero fazer parte da comunidade e começar minha transformação!');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
