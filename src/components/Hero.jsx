@@ -15,12 +15,20 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <div className="hero-decorative-shapes">
-        <span className="hero-shape hero-shape-1"></span>
-        <span className="hero-shape hero-shape-2"></span>
-        <span className="hero-shape hero-shape-3"></span>
-        <span className="hero-shape hero-shape-4"></span>
-        <span className="hero-shape hero-shape-5"></span>
+      <div className="hero-animated-bg">
+        <div className="hero-wave hero-wave-1"></div>
+        <div className="hero-wave hero-wave-2"></div>
+        <div className="hero-wave hero-wave-3"></div>
+        <div className="hero-particles">
+          {[...Array(20)].map((_, i) => (
+            <span key={i} className="particle" style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${10 + Math.random() * 20}s`
+            }}></span>
+          ))}
+        </div>
       </div>
       <div className="container">
         <div className="hero-content">
