@@ -5,6 +5,7 @@ import FeatureBar from './components/FeatureBar';
 import './App.css';
 
 // Lazy load componentes abaixo do fold para reduzir JavaScript inicial
+const AboutSection = lazy(() => import('./components/AboutSection'));
 const TrainingMethodSection = lazy(() => import('./components/TrainingMethodSection'));
 const ProgramsSection = lazy(() => import('./components/ProgramsSection'));
 const WhySection = lazy(() => import('./components/WhySection'));
@@ -26,6 +27,9 @@ function App() {
       <main>
         <Hero />
         <FeatureBar />
+        <Suspense fallback={<SectionSkeleton />}>
+          <AboutSection />
+        </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <TrainingMethodSection />
         </Suspense>

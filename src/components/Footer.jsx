@@ -26,7 +26,7 @@ const Footer = () => {
     <footer className="footer-modern">
       {/* Seção CTA Principal */}
       <div className="footer-cta-section">
-        <div className="container">
+      <div className="container">
           <div className="footer-cta-content">
             <div className="footer-cta-text">
               <h2 className="footer-cta-title">Pronto para começar sua transformação?</h2>
@@ -61,19 +61,19 @@ const Footer = () => {
                   </svg>
                 </button>
               </div>
-            </div>
+          </div>
 
             {/* Coluna 2: Links Rápidos */}
             <div className="footer-links-column">
               <h3 className="footer-column-title">Links Rápidos</h3>
               <ul className="footer-links">
                 {quickLinks.map((link, index) => (
-                  <li key={index}>
+                <li key={index}>
                     <a href={link.href}>{link.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                </li>
+              ))}
+            </ul>
+          </div>
 
             {/* Coluna 3: Contato */}
             <div className="footer-contact-column">
@@ -101,12 +101,12 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+            </div>
           </div>
         </div>
-      </div>
-
+        
       {/* Bottom Bar */}
-      <div className="footer-bottom">
+        <div className="footer-bottom">
         <div className="container">
           <div className="footer-bottom-content">
             <p className="footer-copyright">
