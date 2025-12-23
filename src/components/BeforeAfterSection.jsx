@@ -3,6 +3,7 @@ import './BeforeAfterSection.css';
 
 const BeforeAfterSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [expandedImage, setExpandedImage] = useState(null);
 
   const transformations = [
     {
@@ -61,6 +62,20 @@ const BeforeAfterSection = () => {
     return () => clearInterval(interval);
   }, [transformations.length]);
 
+  // Fecha o lightbox com ESC
+  useEffect(() => {
+    if (!expandedImage) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setExpandedImage(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expandedImage]);
+
   const handleWhatsAppClick = () => {
     const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Quero ter resultados como esses! Como posso começar?');
@@ -101,6 +116,12 @@ const BeforeAfterSection = () => {
                                 alt={`Antes de ${transformation.name}`}
                                 loading="lazy"
                                 className="comparison-image"
+                                onClick={() =>
+                                  setExpandedImage({
+                                    src: transformation.beforeImage,
+                                    alt: `Antes - ${transformation.beforeWeight}`,
+                                  })
+                                }
                               />
                             </div>
                           ) : (
@@ -127,6 +148,12 @@ const BeforeAfterSection = () => {
                                 alt={`Depois de ${transformation.name}`}
                                 loading="lazy"
                                 className="comparison-image"
+                                onClick={() =>
+                                  setExpandedImage({
+                                    src: transformation.afterImage,
+                                    alt: `Depois - ${transformation.afterWeight}`,
+                                  })
+                                }
                               />
                             </div>
                           ) : (
@@ -185,6 +212,33 @@ const BeforeAfterSection = () => {
             <span className="btn-arrow">→</span>
           </button>
         </div>
+
+        {expandedImage && (
+          <div
+            className="image-lightbox-overlay"
+            onClick={() => setExpandedImage(null)}
+            aria-modal="true"
+            role="dialog"
+          >
+            <div
+              className="image-lightbox-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="image-lightbox-close"
+                onClick={() => setExpandedImage(null)}
+                aria-label="Fechar imagem ampliada"
+              >
+                ×
+              </button>
+              <img
+                src={expandedImage.src}
+                alt={expandedImage.alt}
+                className="image-lightbox-img"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

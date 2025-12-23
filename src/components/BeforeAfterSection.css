@@ -230,11 +230,11 @@
   align-items: flex-end;
   justify-content: center;
   line-height: 1.05;
-  white-space: normal; /* permite quebra para palavras longas como CONFORTÁVEL/DEFINIDO */
+  white-space: normal; /* permite quebra apenas entre palavras */
   text-align: center;
   max-width: 100%;
   padding: 0 var(--spacing-xs); /* dá respiro lateral para não colar na borda do card */
-  word-break: break-word; /* garante que não vaze para fora mesmo em telas bem estreitas */
+  word-break: normal; /* evita cortar palavras no meio (ex: SAUDÁVEL) */
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
@@ -328,6 +328,60 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  cursor: zoom-in;
+}
+
+.image-lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: var(--spacing-lg);
+}
+
+.image-lightbox-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  background: #000;
+}
+
+.image-lightbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-normal), transform var(--transition-normal);
+}
+
+.image-lightbox-close:hover {
+  background: rgba(234, 0, 53, 0.9);
+  transform: scale(1.05);
 }
 
 .comparison-divider {
@@ -592,8 +646,8 @@
     overflow: hidden;
   }
   .transformation-comparison {
-    gap: var(--spacing-md);
-    padding: 0 var(--spacing-sm); /* dá respiro lateral para as caixas de antes/depois */
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-2xs); /* reduz a margem lateral para deixar o texto mais longo */
   }
   
   .transformation-slide.offset-1 {
@@ -616,8 +670,8 @@
   }
   
   .comparison-metric {
-    font-size: 1.4rem;
-    min-height: 2.4rem;
+    font-size: 1.25rem; /* reduz um pouco para caber melhor em 1–2 linhas */
+    min-height: 2.6rem;
   }
   
   .after-metric {
@@ -632,6 +686,11 @@
   }
   .comparison-media {
     height: 170px;
+  }
+
+  .image-lightbox-content {
+    max-width: 100%;
+    border-radius: 0;
   }
   
   .before-placeholder span,
