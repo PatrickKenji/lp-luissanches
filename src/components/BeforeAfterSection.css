@@ -106,7 +106,7 @@
 
 .transformation-card {
   width: 100%;
-  max-width: 600px;
+  max-width: 620px;
   background-color: var(--color-primary);
   border: 2px solid rgba(234, 0, 53, 0.2);
   border-radius: 20px;
@@ -190,6 +190,21 @@
 
 .comparison-side {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+.comparison-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2xs);
+  min-height: 110px; /* garante altura igual entre antes/depois */
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .comparison-label {
@@ -206,19 +221,31 @@
 }
 
 .comparison-metric {
-  font-size: 1.8rem;
+  font-size: clamp(1.7rem, 2.1vw, 1.9rem);
   font-weight: var(--font-weight-black);
   color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
+  margin: 0;
+  min-height: 3rem; /* equaliza altura do bloco para alinhar as imagens */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  line-height: 1.05;
+  white-space: normal; /* permite quebra para palavras longas como CONFORTÁVEL/DEFINIDO */
+  text-align: center;
+  max-width: 100%;
+  padding: 0 var(--spacing-xs); /* dá respiro lateral para não colar na borda do card */
+  word-break: break-word; /* garante que não vaze para fora mesmo em telas bem estreitas */
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
 .after-metric {
   color: var(--color-accent);
-  font-size: 2.2rem;
+  font-size: clamp(1.7rem, 2.1vw, 1.9rem);
 }
 
 .comparison-placeholder {
-  height: 250px;
+  height: 230px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -278,6 +305,31 @@
   font-weight: var(--font-weight-semibold);
 }
 
+.comparison-media {
+  height: 230px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.before-media {
+  background: linear-gradient(135deg, rgba(100, 100, 100, 0.15) 0%, rgba(50, 50, 50, 0.1) 100%);
+}
+
+.after-media {
+  background: linear-gradient(135deg, rgba(234, 0, 53, 0.2) 0%, rgba(234, 0, 53, 0.08) 100%);
+  border-color: rgba(234, 0, 53, 0.35);
+}
+
+.comparison-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .comparison-divider {
   display: flex;
   align-items: center;
@@ -308,16 +360,17 @@
   line-height: 1.7;
   text-align: center;
   margin: 0;
+  min-height: 96px; /* equaliza altura final dos cards no mobile */
 }
 
 .carousel-nav {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(234, 0, 53, 0.2);
+  width: 52px;
+  height: 52px;
+  background-color: rgba(234, 0, 53, 0.15);
   border: 2px solid var(--color-accent);
   border-radius: 50%;
   color: var(--color-text-primary);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all var(--transition-normal);
@@ -325,8 +378,10 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 20px rgba(234, 0, 53, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 5px 18px rgba(234, 0, 53, 0.35);
+  position: relative;
+  z-index: 3; /* acima do fundo, mas abaixo do conteúdo de outros cards */
 }
 
 .carousel-nav:hover {
@@ -339,12 +394,18 @@
 .transformation-indicators {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-md);
+  align-items: center;
+  gap: var(--spacing-lg);
   /* empurra os indicadores para baixo do card */
   margin-top: var(--spacing-3xl);
   margin-bottom: var(--spacing-2xl);
   position: relative;
   z-index: 1;
+}
+
+.indicator-dots {
+  display: flex;
+  gap: var(--spacing-md);
 }
 
 .indicator-dot {
@@ -369,6 +430,32 @@
   box-shadow: 0 0 15px rgba(234, 0, 53, 0.7);
 }
 
+.indicator-nav {
+  display: none; /* por padrão, só mostramos essas setas no mobile */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  background-color: rgba(234, 0, 53, 0.2);
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 20px rgba(234, 0, 53, 0.3);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.indicator-nav:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-dark);
+  transform: scale(1.1);
+  box-shadow: 0 5px 24px rgba(234, 0, 53, 0.6);
+}
+
 .cta-container {
   display: flex;
   justify-content: center;
@@ -381,7 +468,7 @@
   }
   
   .transformation-card {
-    max-width: 500px;
+    max-width: 520px;
   }
   
   .transformation-slide.offset-1 {
@@ -404,7 +491,7 @@
   
   .transformations-carousel-wrapper {
     gap: var(--spacing-md);
-    margin-top: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
   }
   
   .transformations-viewport {
@@ -417,9 +504,7 @@
   }
   
   .carousel-nav {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
+    display: none; /* em telas menores usamos autoplay + indicadores, sem botões laterais */
   }
   
   .transformation-card {
@@ -451,19 +536,32 @@
   }
   
   .comparison-metric {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   
   .after-metric {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
   
   .comparison-placeholder {
-    height: 180px;
+    height: 190px;
+  }
+  .comparison-info {
+    min-height: 95px;
+  }
+  .comparison-media {
+    height: 190px;
   }
   
   .arrow-icon {
     font-size: 2rem;
+  }
+
+  .indicator-nav {
+    display: inline-flex; /* mostra as setas inferiores apenas no mobile/tablet */
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
   }
 }
 
@@ -484,14 +582,13 @@
   }
   
   .carousel-nav {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    display: none;
   }
   
   .transformation-card {
     padding: var(--spacing-lg);
-    max-width: 90%;
+    max-width: 360px;
+    width: calc(100vw - 48px);
     overflow: hidden;
   }
   .transformation-comparison {
@@ -519,15 +616,22 @@
   }
   
   .comparison-metric {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    min-height: 2.4rem;
   }
   
   .after-metric {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .comparison-placeholder {
     height: 150px;
+  }
+  .comparison-info {
+    min-height: 90px;
+  }
+  .comparison-media {
+    height: 170px;
   }
   
   .before-placeholder span,
@@ -537,5 +641,11 @@
   
   .transformation-description {
     font-size: 0.95rem;
+  }
+
+  .indicator-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
 }
