@@ -6,6 +6,7 @@
   padding-top: 80px;
   display: flex;
   flex-direction: column;
+  contain: layout style paint;
 }
 
 /* Gradiente animado de fundo */
@@ -22,14 +23,18 @@
     radial-gradient(circle at 40% 80%, rgba(234, 0, 53, 0.1) 0%, transparent 50%);
   animation: gradient-shift 20s ease infinite;
   z-index: 1;
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+  pointer-events: none;
 }
 
 @keyframes gradient-shift {
   0%, 100% {
-    transform: translate(0%, 0%);
+    transform: translate3d(0%, 0%, 0);
   }
   50% {
-    transform: translate(-25%, -25%);
+    transform: translate3d(-25%, -25%, 0);
   }
 }
 

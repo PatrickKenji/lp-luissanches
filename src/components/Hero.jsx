@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const [particleCount, setParticleCount] = useState(20);
+
+  useEffect(() => {
+    // Evita reflow forçado usando matchMedia
+    const mq = window.matchMedia('(max-width: 768px)');
+    const updateParticleCount = () => {
+      setParticleCount(mq.matches ? 5 : 20);
+    };
+    
+    updateParticleCount();
+    mq.addEventListener('change', updateParticleCount);
+    
+    return () => mq.removeEventListener('change', updateParticleCount);
+  }, []);
+
   const handleWhatsAppClick = () => {
     const phoneNumber = '5544999044206';
     const message = encodeURIComponent('Olá! Quero começar minha transformação hoje!');
@@ -20,7 +35,7 @@ const Hero = () => {
         <div className="hero-wave hero-wave-2"></div>
         <div className="hero-wave hero-wave-3"></div>
         <div className="hero-particles">
-          {[...Array(window.innerWidth < 768 ? 5 : 20)].map((_, i) => (
+          {[...Array(particleCount)].map((_, i) => (
             <span key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
