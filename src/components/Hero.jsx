@@ -6,13 +6,25 @@ const Hero = () => {
 
   useEffect(() => {
     // Evita reflow forçado usando matchMedia
+    // Usa requestIdleCallback para não bloquear renderização inicial
     const mq = window.matchMedia('(max-width: 768px)');
     const updateParticleCount = () => {
       setParticleCount(mq.matches ? 5 : 20);
     };
     
-    updateParticleCount();
-    mq.addEventListener('change', updateParticleCount);
+    // Usa requestIdleCallback para não bloquear LCP
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        updateParticleCount();
+        mq.addEventListener('change', updateParticleCount);
+      });
+    } else {
+      // Fallback para navegadores sem requestIdleCallback
+      setTimeout(() => {
+        updateParticleCount();
+        mq.addEventListener('change', updateParticleCount);
+      }, 0);
+    }
     
     return () => mq.removeEventListener('change', updateParticleCount);
   }, []);

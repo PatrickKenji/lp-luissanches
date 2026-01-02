@@ -11,10 +11,23 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
               0 0 40px rgba(234, 0, 53, 0.1);
   padding: var(--spacing-md) 0;
-  transition: all var(--transition-normal);
+  transition: padding var(--transition-normal), box-shadow var(--transition-normal);
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
+  will-change: padding, box-shadow;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Fallback para navegadores sem aceleração de hardware */
+.header.no-gpu {
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+
+.header.no-gpu::before {
+  opacity: 0.8;
 }
 
 .header::before {
@@ -30,6 +43,8 @@
   opacity: 1;
   z-index: -1;
   pointer-events: none;
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 .header::after {
@@ -54,6 +69,7 @@
   padding: var(--spacing-sm) 0;
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.7),
               0 0 50px rgba(234, 0, 53, 0.15);
+  will-change: auto; /* Remove will-change quando não está mudando */
 }
 
 .header.scrolled::before {
@@ -146,11 +162,12 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.85rem;
-  transition: all var(--transition-normal);
+  transition: color var(--transition-normal);
   position: relative;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 4px;
   z-index: 1;
+  will-change: color;
 }
 
 .nav-link::before {
@@ -181,12 +198,13 @@
   position: absolute;
   bottom: -5px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(0);
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
   box-shadow: 0 0 8px rgba(234, 0, 53, 0.8);
   transition: width var(--transition-normal);
+  will-change: width;
 }
 
 .nav-link:hover::after {
@@ -206,6 +224,8 @@
   border: 2px solid var(--color-accent);
   color: var(--color-accent);
   box-shadow: 0 0 15px rgba(234, 0, 53, 0.3);
+  transform: translateZ(0);
+  will-change: transform, background-color, box-shadow;
 }
 
 .btn-sm::before {
@@ -226,13 +246,14 @@
 .btn-sm:hover {
   background-color: var(--color-accent);
   color: var(--color-text-dark);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   box-shadow: 0 8px 25px rgba(234, 0, 53, 0.5),
               0 0 30px rgba(234, 0, 53, 0.4);
 }
 
 .btn-sm:active {
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
+  will-change: auto;
 }
 
 .btn-desktop {
@@ -299,6 +320,13 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  will-change: opacity, visibility;
+  transform: translateZ(0);
+}
+
+.menu-overlay.no-gpu {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 .menu-overlay.active {
@@ -321,17 +349,27 @@
   box-shadow: -10px 0 50px rgba(0, 0, 0, 0.8),
               -5px 0 30px rgba(234, 0, 53, 0.2);
   z-index: 1000;
-  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(100%) translateZ(0);
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   margin: 0;
   padding: 0;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Fallback para mobile drawer sem GPU */
+.mobile-drawer.no-gpu {
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
 }
 
 .mobile-drawer.open {
-  right: 0;
+  transform: translateX(0) translateZ(0);
+  will-change: auto;
 }
 
 .mobile-drawer::before {

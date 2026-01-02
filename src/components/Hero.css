@@ -286,6 +286,11 @@
   margin-bottom: var(--spacing-xl);
   color: #ffffff;
   text-transform: uppercase;
+  /* Otimizações para LCP */
+  contain: layout style;
+  will-change: auto;
+  /* Garante renderização imediata */
+  font-display: swap;
 }
 
 .hero-title-highlight {

@@ -8,15 +8,48 @@
     <!-- Preconnect para recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preconnect para o próprio domínio (reduz latência do caminho crítico) -->
+    <link rel="preconnect" href="https://lp-luissanches.vercel.app" crossorigin>
     <link rel="dns-prefetch" href="https://wa.me">
     <link rel="dns-prefetch" href="https://www.instagram.com">
     
     <!-- Preload da imagem LCP para mobile - deve ser detectável imediatamente -->
     <link rel="preload" as="image" href="/luis.jpg" fetchpriority="high">
     
-    <!-- Fontes carregadas de forma não bloqueante -->
+    <!-- Fontes carregadas de forma não bloqueante com font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- CSS crítico inline para hero-title (LCP) -->
+    <style>
+      /* CSS crítico para LCP - hero-title - renderiza imediatamente */
+      .hero-title {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-weight: 900;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin: 0;
+        line-height: 1.15;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        /* Garante renderização imediata sem esperar CSS externo */
+        visibility: visible;
+        opacity: 1;
+      }
+      /* Garante que o hero seja visível imediatamente */
+      .hero {
+        min-height: 100vh;
+        background: #000000;
+        position: relative;
+      }
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      /* Previne layout shift durante carregamento */
+      #root {
+        min-height: 100vh;
+      }
+    </style>
     
     <!-- Resource hints para melhorar carregamento -->
     <meta http-equiv="x-dns-prefetch-control" content="on">

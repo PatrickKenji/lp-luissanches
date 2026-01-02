@@ -12,7 +12,7 @@ export default defineConfig({
     assetsInlineLimit: 4096, // Inline assets pequenos (< 4kb)
     rollupOptions: {
       output: {
-        // Separa vendor chunks para melhor cache
+        // Separa vendor chunks para melhor cache e reduz caminho crítico
         manualChunks(id) {
           // Separa React e React-DOM em chunk separado
           if (id.includes('node_modules')) {
@@ -20,6 +20,10 @@ export default defineConfig({
               return 'react-vendor';
             }
             return 'vendor';
+          }
+          // Separa componentes críticos (Hero, Header) do resto
+          if (id.includes('src/components/Hero') || id.includes('src/components/Header')) {
+            return 'critical';
           }
         },
         // Otimiza estrutura de arquivos

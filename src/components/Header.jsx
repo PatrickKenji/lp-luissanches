@@ -5,8 +5,15 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasHardwareAccel, setHasHardwareAccel] = useState(true);
 
   useEffect(() => {
+    // Detecta aceleração de hardware
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    const hasGPU = !!(gl && gl.getExtension('WEBGL_lose_context'));
+    setHasHardwareAccel(hasGPU);
+    
     // Usa matchMedia para evitar reflows forçados
     const mqMobile = window.matchMedia('(max-width: 768px)');
     
@@ -18,15 +25,20 @@ const Header = () => {
       }
     };
     
-    // Scroll handler com requestAnimationFrame para evitar reflows
+    // Scroll handler otimizado com throttling para reduzir lag
     let scrollTimeout;
+    let lastScrollY = 0;
     const handleScroll = () => {
       if (scrollTimeout) {
         cancelAnimationFrame(scrollTimeout);
       }
       scrollTimeout = requestAnimationFrame(() => {
         const scrollPosition = window.scrollY;
-        setIsScrolled(scrollPosition > 50);
+        // Só atualiza se a mudança for significativa (reduz re-renders)
+        if (Math.abs(scrollPosition - lastScrollY) > 5) {
+          setIsScrolled(scrollPosition > 50);
+          lastScrollY = scrollPosition;
+        }
       });
     };
     
@@ -110,7 +122,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`header ${isScrolled ? 'scrolled' : ''} ${isMenuOpen && isMobile ? 'menu-open' : ''}`}>
+      <header className={`header ${isScrolled ? 'scrolled' : ''} ${isMenuOpen && isMobile ? 'menu-open' : ''} ${!hasHardwareAccel ? 'no-gpu' : ''}`}>
         <div className="container">
           <div className="header-content">
             {/* Logo - escondida quando menu está aberto no mobile */}
@@ -157,13 +169,13 @@ const Header = () => {
       {isMobile && (
         <>
           <div 
-            className={`menu-overlay ${isMenuOpen ? 'active' : ''}`}
+            className={`menu-overlay ${isMenuOpen ? 'active' : ''} ${!hasHardwareAccel ? 'no-gpu' : ''}`}
             onClick={toggleMenu}
             aria-hidden="true"
           ></div>
           
           {/* Mobile Sidebar Drawer */}
-          <aside className={`mobile-drawer ${isMenuOpen ? 'open' : ''}`}>
+          <aside className={`mobile-drawer ${isMenuOpen ? 'open' : ''} ${!hasHardwareAccel ? 'no-gpu' : ''}`}>
             <div className="drawer-header">
               <div className="logo drawer-logo">
                 <img 
