@@ -106,8 +106,8 @@ const BeforeAfterSection = () => {
                       <div className="transformation-comparison">
                         <div className="comparison-side before">
                           <div className="comparison-info">
-                            <div className="comparison-label">ANTES</div>
-                            <div className="comparison-metric">{transformation.beforeWeight}</div>
+                          <div className="comparison-label">ANTES</div>
+                          <div className="comparison-metric">{transformation.beforeWeight}</div>
                           </div>
                           {transformation.beforeImage ? (
                             <div className="comparison-media before-media">
@@ -125,10 +125,10 @@ const BeforeAfterSection = () => {
                               />
                             </div>
                           ) : (
-                            <div className="comparison-placeholder before-placeholder">
-                              <span>📸</span>
-                              <p>Foto antes</p>
-                            </div>
+                          <div className="comparison-placeholder before-placeholder">
+                            <span>📸</span>
+                            <p>Foto antes</p>
+                          </div>
                           )}
                         </div>
 
@@ -138,8 +138,8 @@ const BeforeAfterSection = () => {
 
                         <div className="comparison-side after">
                           <div className="comparison-info">
-                            <div className="comparison-label after-label">DEPOIS</div>
-                            <div className="comparison-metric after-metric">{transformation.afterWeight}</div>
+                          <div className="comparison-label after-label">DEPOIS</div>
+                          <div className="comparison-metric after-metric">{transformation.afterWeight}</div>
                           </div>
                           {transformation.afterImage ? (
                             <div className="comparison-media after-media">
@@ -157,10 +157,10 @@ const BeforeAfterSection = () => {
                               />
                             </div>
                           ) : (
-                            <div className="comparison-placeholder after-placeholder">
-                              <span>📸</span>
-                              <p>Foto depois</p>
-                            </div>
+                          <div className="comparison-placeholder after-placeholder">
+                            <span>📸</span>
+                            <p>Foto depois</p>
+                          </div>
                           )}
                         </div>
                       </div>
@@ -184,14 +184,14 @@ const BeforeAfterSection = () => {
           </button>
 
           <div className="indicator-dots">
-            {transformations.map((_, index) => (
-              <button
-                key={index}
-                className={`indicator-dot ${index === activeSlide ? 'active' : ''}`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Ir para transformação ${index + 1}`}
-              />
-            ))}
+          {transformations.map((_, index) => (
+            <button
+              key={index}
+              className={`indicator-dot ${index === activeSlide ? 'active' : ''}`}
+              onClick={() => goToSlide(index)}
+              aria-label={`Ir para transformação ${index + 1}`}
+            />
+          ))}
           </div>
 
           <button

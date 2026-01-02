@@ -33,7 +33,7 @@ const AboutSection = () => {
 
             <div className="about-story">
               <p className="about-paragraph">
-                Minha jornada no mundo fitness começou há mais de 5 anos, quando descobri 
+                Minha jornada no mundo fitness começou há mais de 9 anos, quando descobri 
                 que <strong>treinos genéricos não entregam resultados reais</strong>. Cada 
                 pessoa é única, com objetivos, limitações e histórias diferentes.
               </p>

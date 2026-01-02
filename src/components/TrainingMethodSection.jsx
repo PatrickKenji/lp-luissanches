@@ -7,7 +7,7 @@ const TrainingMethodSection = () => {
       id: 1,
       number: '1',
       title: 'Avaliação individual',
-      description: 'A gente começa com uma conversa de 30 minutos pra entender seus objetivos, rotina e histórico. É a base pra montar algo realmente seu.'
+      description: 'A gente começa com uma conversa de 50 minutos pra entender seus objetivos, rotina e histórico. É a base pra montar algo realmente seu.'
     },
     {
       id: 2,

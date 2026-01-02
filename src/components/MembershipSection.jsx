@@ -50,7 +50,7 @@ const MembershipSection = () => {
     {
       id: 'online',
       title: 'ONLINE',
-      description: 'Transforme sua rotina com acompanhamento completo, direto do conforto da sua casa',
+      description: 'Transforme sua rotina com acompanhamento completo, em qualquer lugar',
       recommended: true,
       benefits: [
         'Plano de treino individualizado',
@@ -65,7 +65,7 @@ const MembershipSection = () => {
         mensal: {
           price: 327,
           period: '1 mês',
-          sessions: '2 sessões online + suporte',
+          sessions: '1 sessão online + suporte',
           perMonth: 327
         },
         trimestral: {
