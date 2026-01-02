@@ -55,7 +55,7 @@ const MembershipSection = () => {
       benefits: [
         'Plano de treino individualizado',
         'Treinos no app com vídeos explicativos',
-        'Acompanhamento online contínuo',
+        'Acompanhamento semanal online',
         'Ajustes periódicos do treino',
         'Reavaliação a cada 2 meses',
         'Suporte direto para dúvidas e correções',

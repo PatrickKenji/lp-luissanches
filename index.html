@@ -1,21 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/webp" href="/fav.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect para recursos críticos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Pre-connect para recursos externos usados nos CTAs -->
     <link rel="dns-prefetch" href="https://wa.me">
     <link rel="dns-prefetch" href="https://www.instagram.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    
     <!-- Preload da imagem LCP para mobile - deve ser detectável imediatamente -->
     <link rel="preload" as="image" href="/luis.jpg" fetchpriority="high">
+    
+    <!-- Fontes carregadas de forma não bloqueante -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"></noscript>
+    
     <!-- Resource hints para melhorar carregamento -->
     <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    <!-- Otimizações de performance -->
+    <meta name="theme-color" content="#000000">
     <title>Personal Trainer - Transforme Sua Vida</title>
+    
+    <!-- CSS crítico inline para evitar render-blocking (opcional, pode ser adicionado depois) -->
   </head>
   <body>
     <div id="root"></div>

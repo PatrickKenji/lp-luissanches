@@ -7,7 +7,6 @@ export default defineConfig({
   build: {
     // Otimizações de build
     cssCodeSplit: true, // Separa CSS por chunks para carregamento paralelo
-    minify: 'esbuild', // Esbuild é mais rápido que Terser
     cssMinify: 'esbuild',
     // Otimiza tamanho do output
     assetsInlineLimit: 4096, // Inline assets pequenos (< 4kb)
@@ -43,5 +42,8 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
     // Otimiza source maps (desabilita em produção para reduzir tamanho)
     sourcemap: false,
+    // Otimizações adicionais para reduzir tamanho
+    target: 'es2015',
+    minify: 'esbuild', // Esbuild é mais rápido e eficiente
   },
 })

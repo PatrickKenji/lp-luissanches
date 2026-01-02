@@ -47,31 +47,43 @@ const Header = () => {
   useEffect(() => {
     if (!isMobile) return;
     
-    // Usa requestAnimationFrame para evitar reflow forçado
+    // Usa double RAF para evitar reflow forçado
+    let rafId;
     const updateOverflow = () => {
       if (isMenuOpen) {
-        // Salva a posição do scroll antes de bloquear
-        const scrollY = window.scrollY;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollY}px`;
-        document.body.style.width = '100%';
-        document.body.style.overflow = 'hidden';
+        // Salva a posição do scroll antes de bloquear (em um frame separado)
+        rafId = requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          // Aplica mudanças em outro frame para evitar reflow
+          rafId = requestAnimationFrame(() => {
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+          });
+        });
       } else {
         // Restaura a posição do scroll
-        const scrollY = document.body.style.top;
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        if (scrollY) {
-          window.scrollTo(0, parseInt(scrollY || '0') * -1);
-        }
+        const savedScrollY = document.body.style.top;
+        rafId = requestAnimationFrame(() => {
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+          document.body.style.overflow = '';
+          if (savedScrollY) {
+            // Usa setTimeout para evitar reflow ao restaurar scroll
+            setTimeout(() => {
+              window.scrollTo(0, parseInt(savedScrollY || '0') * -1);
+            }, 0);
+          }
+        });
       }
     };
     
-    requestAnimationFrame(updateOverflow);
+    updateOverflow();
     
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       // Cleanup
       document.body.style.position = '';
       document.body.style.top = '';
