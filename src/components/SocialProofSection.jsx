@@ -24,7 +24,7 @@ const SocialProofSection = () => {
     {
       id: 3,
       icon: '📱',
-      title: 'Suporte Imediato',
+      title: 'Suporte',
       description: 'Tire suas dúvidas em tempo real comigo e outros membros'
     },
     {

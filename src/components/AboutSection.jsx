@@ -17,7 +17,7 @@ const AboutSection = () => {
               <div className="about-image-overlay"></div>
             </div>
             <div className="about-experience-badge">
-              <span className="experience-number">5+</span>
+              <span className="experience-number">9+</span>
               <span className="experience-text">Anos de Experiência</span>
             </div>
           </div>

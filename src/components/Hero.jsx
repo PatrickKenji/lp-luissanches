@@ -114,8 +114,7 @@ const Hero = () => {
                   </svg>
                 </div>
                 <div className="hero-stat-content">
-                  <div className="hero-stat-value">24/7</div>
-                  <div className="hero-stat-label">Suporte Disponível</div>
+                  <div className="hero-stat-value">Suporte online</div>
                 </div>
               </div>
             </div>
@@ -123,7 +122,7 @@ const Hero = () => {
             <div className="hero-card-footer">
               <div className="hero-card-price">
                 <span className="hero-card-from">A partir de</span>
-                <span className="hero-card-amount">R$327<span className="hero-card-period">/mês</span></span>
+                <span className="hero-card-amount">R$197<span className="hero-card-period">/mês</span></span>
               </div>
               <button className="hero-card-cta" onClick={handleWhatsAppClick}>
                 Começar Agora
